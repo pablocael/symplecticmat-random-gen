@@ -6,7 +6,7 @@ np.core.arrayprint._line_width = 200
 np.random.seed(42)
 
 """
-    Checks if a matrix is sympletic by applying the definition
+    Checks if a matrix is symplectic by applying the definition
     O is Omega matrix [[0, I(n)], [-I(n), 0]], where I(n) is nxn identity matrix
 """
 def isSymplecticMat(M, O):
@@ -51,7 +51,7 @@ if __name__ == '__main__':
         M, O = generateSymplecticMat(matrixSize)
         if not isSymplecticMat(M, O):
             print('ERROR, some generated matrix is not symplectic:', M)
-            
+
 
     print(f'All {numMatricesToGenerate} generated symplectic matrices are correct!')
 
