@@ -1,4 +1,6 @@
 import numpy as np
+import matplotlib.pyplot as plt
+
 np.set_printoptions(edgeitems=3)
 np.core.arrayprint._line_width = 200
 
@@ -42,16 +44,27 @@ def generateSymplecticMat(size):
     O[-size:, :size] = -np.identity(size)
     return np.matmul(O, np.matmul(D, N)), O
 
+def getAverageEigenValues(M):
+    eigValues, _ = np.linalg.eig(M)
+
+    return eigValues.real.mean()
+
 if __name__ == '__main__':
     # generate thousands of random symplectic matrices and check if they are correct
-    numMatricesToGenerate = 10000
+    numMatricesToGenerate = 1000
+    avgEigenValues = []
     for i in range(numMatricesToGenerate):
         # choose a random matrix size
         matrixSize = np.random.randint(8,100)
         M, O = generateSymplecticMat(matrixSize)
         if not isSymplecticMat(M, O):
             print('ERROR, some generated matrix is not symplectic:', M)
+        avgEigenValues.append(getAverageEigenValues(M))
 
 
     print(f'All {numMatricesToGenerate} generated symplectic matrices are correct!')
+
+    print('plotting average eigen values histogram...')
+    plt.hist(avgEigenValues, density=1)
+    plt.show()
 
