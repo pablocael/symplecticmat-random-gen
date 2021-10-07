@@ -1,3 +1,3 @@
 # Symplectic Gaussian Random Matrix Generator
 
-This code provides guassian random symplectic matrix generator
+This code provides gaussian random symplectic matrix generator
